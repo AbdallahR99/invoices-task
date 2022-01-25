@@ -1,0 +1,142 @@
+
+
+@import '@angular/material/theming';
+@import 'colors.scss';
+$mat-primary: (
+  50: tint($primary, 80%),
+  100: tint($primary, 60%),
+  200: tint($primary, 40%),
+  300: tint($primary, 20%),
+  400: tint($primary, 10%),
+  500: $primary,
+  600: shade($primary, 10%),
+  700: shade($primary, 20%),
+  800: shade($primary, 40%),
+  900: shade($primary, 60%),
+  A100: tint($primary, 20%),
+  A200: tint($primary, 40%),
+  A400: tint($primary, 80%),
+  A700: shade($primary, 20%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+$mat-secondary: (
+  50: tint($secondary, 80%),
+  100: tint($secondary, 60%),
+  200: tint($secondary, 40%),
+  300: tint($secondary, 20%),
+  400: tint($secondary, 10%),
+  500: $secondary,
+  600: shade($secondary, 10%),
+  700: shade($secondary, 20%),
+  800: shade($secondary, 40%),
+  900: shade($secondary, 60%),
+  A100: tint($secondary, 20%),
+  A200: tint($secondary, 40%),
+  A400: tint($secondary, 80%),
+  A700: shade($secondary, 20%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+$mat-danger: (
+  50: tint($danger, 80%),
+  100: tint($danger, 60%),
+  200: tint($danger, 40%),
+  300: tint($danger, 20%),
+  400: tint($danger, 10%),
+  500: $danger,
+  600: shade($danger, 10%),
+  700: shade($danger, 20%),
+  800: shade($danger, 40%),
+  900: shade($danger, 60%),
+  A100: tint($danger, 20%),
+  A200: tint($danger, 40%),
+  A400: tint($danger, 80%),
+  A700: shade($danger, 20%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+/* Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once! */
+@include mat-core();
+
+/* Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/ */
+$estates-primary: mat-palette($mat-primary);
+$estates-accent: mat-palette($mat-secondary);
+
+$estates-danger: mat-palette($mat-danger);
+/* The warn palette is optional (defaults to red). */
+$estates-warn: mat-palette($mat-red);
+
+/* Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".*/
+$estates-theme: mat-light-theme((
+  color: (
+    primary: $estates-primary,
+    accent: $estates-accent,
+    warn: $estates-danger,
+  )
+));
+
+/* Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using. */
+@include angular-material-theme($estates-theme);
+
+
+.no-padding{
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+
+.mat-menu-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}

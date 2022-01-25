@@ -1,0 +1,74 @@
+@import "colors.scss";
+
+:host ::ng-deep {
+  .select-icon {
+    color: #707070;
+  }
+
+  .mat-radio-inner-circle {
+    border-radius: 3px;
+  }
+  .mat-radio-outer-circle {
+    border-radius: 3px;
+    border-width: 1px;
+  }
+  .mat-form-field-infix {
+    border-top: 1px solid transparent;
+  }
+  .mat-select-arrow-wrapper {
+    display: block;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.6rem 0 12px 0;
+  }
+
+
+  .mat-select-arrow  {
+    border-left: unset;
+    border-right: unset;
+    border-top: unset;
+  }
+
+
+
+  .mat-form-field-invalid {
+    .select-icon {
+      color: #dc3545;
+    }
+  }
+  .mat-focused {
+    .select-icon {
+      color: $primary;
+    }
+  }
+
+
+  .mat-form-field-disabled {
+    .select-icon {
+      color: rgba(0, 0, 0, 0.42);
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    background-color: #fff;
+  }
+  .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    background-color: #fff;
+  }
+
+}
+
+::ng-deep {
+  [dir="rtl"] {
+    .select-icon {
+      left: 0px;
+    }
+  }
+
+  [dir="ltr"] {
+    .select-icon {
+      right: 0px;
+    }
+  }
+}

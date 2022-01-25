@@ -1,0 +1,39 @@
+.bg-loading {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.mat-row:nth-child(even){
+  background-color: #eee;
+}
+
+.mat-row:hover {
+  background-color: #dfdfdf;
+}
+
+table {
+  min-width: 700px;
+}
+
+::ng-deep {
+  [dir="ltr"] {
+    .search-icon {
+      left: 3px;
+      top: 7px;
+    }
+    input.search {
+      padding-left: 29px;
+    }
+  }
+
+  [dir="rtl"] {
+    .search-icon {
+      right: 3px;
+      top: 7px;
+    }
+    input.search {
+      padding-right: 29px;
+    }
+  }
+}
+
+

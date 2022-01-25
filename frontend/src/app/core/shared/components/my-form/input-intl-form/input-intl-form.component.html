@@ -1,0 +1,159 @@
+<label *ngIf="label" for="{{name}}"><strong>{{label | translate}}</strong></label>
+
+<div class="input-group mb-3">
+  <input
+    [ngClass]="(showError)
+    ? phoneNumberForm.invalid ? 'is-invalid' : '' : ''"
+    [type]="type"
+    (input)="setValue()"
+    (blur)="onTouched()"
+
+    [(ngModel)]="phoneNumber"
+    #phoneNumberForm="ngModel"
+    [minlength]="minlength"
+    [maxlength]="10"
+    [disabled]="disabled"
+    [max]="max"
+    [min]="min"
+    [numberFormat]="isNumber"
+    [required]="required"
+    [pattern]="pattern"
+    class="form-control rounded-0 rounded-{{ isEn? 'start' : 'end'}}"
+    placeholder="{{placeholder || '' | translate}}"
+  >
+
+  <div class="input-group-append">
+    <span (click)="showDialog()" class="input-group-text px-0 btn btn-border d-flex" id="phoneNumberForm">
+      <span class="px-1"></span>
+      <!-- {{ selectedCountryIntl?.name }} -->
+      <img [src]="flagSrc" width="20">
+      <span class="material-icons">
+        arrow_drop_down
+      </span>
+    </span>
+  </div>
+
+
+  <ng-container *ngIf="showCounter && maxlength">
+    <small *ngIf="phoneNumberForm.value" class="text-muted">
+      {{phoneNumberForm.value.length}}/{{maxlength}}
+    </small>
+  </ng-container>
+
+  <div class="invalid-feedback" *ngIf="showError && phoneNumberForm?.invalid">
+      <mat-error *ngIf="phoneNumberForm.hasError('required')">
+        {{ "fieldRequired" |translate}}
+      </mat-error>
+      <mat-error *ngIf="control.hasError('pattern') || control.hasError('min') ||
+       control.hasError('max') || control.hasError('minlength') || control.hasError('maxlength')">
+        {{ patternHint |translate}}
+      </mat-error>
+  </div>
+</div>
+<input
+[ngClass]="(showError)
+? control.invalid ? 'is-invalid' : '' : ''"
+[type]="type"
+(input)="onChange($any($event!.target).value)"
+(blur)="onTouched()"
+#input
+id="{{name}}"
+name="{{name}}"
+[formControl]="control"
+[minlength]="minlength"
+[maxlength]="maxlength"
+[disabled]="disabled"
+[max]="max"
+[min]="min"
+[numberFormat]="isNumber"
+[required]="required"
+[pattern]="pattern"
+class="form-control d-none"
+placeholder="{{placeholder || '' | translate}}"
+>
+<!--
+<label *ngIf="label" for="{{name}}">{{label | translate}}</label>
+
+<div class="input-group mb-3">
+
+  <input
+  ngModel
+  #phoneNumberForm="ngModel"
+    [ngClass]="(showError)
+    ? phoneNumberForm.invalid ? 'is-invalid' : '' : ''"
+    [type]="type"
+    (input)="setValue()"
+    (blur)="onTouched()"
+    #input
+    id="{{name}}"
+    name="{{name}}"
+    [minlength]="minlength"
+    [maxlength]="maxlength"
+    [disabled]="disabled"
+    [max]="max"
+    [min]="min"
+    [numberFormat]="true"
+    [required]="required"
+    [pattern]="pattern"
+    class="form-control"
+    placeholder="{{placeholder || '' | translate}}"
+  >
+  <input
+    [formControl]="control"
+    [type]="type"
+    (input)="setValue()"
+    (blur)="onTouched()"
+    #input
+    id="{{name}}"
+    name="{{name}}"
+    [minlength]="minlength"
+    [maxlength]="maxlength"
+    [disabled]="disabled"
+    [max]="max"
+    [min]="min"
+    [numberFormat]="true"
+    [required]="required"
+    [pattern]="pattern"
+    class="form-control d-none"
+    placeholder="{{placeholder || '' | translate}}"
+  >
+  <div class="input-group-append">
+    <span (click)="showDialog()" class="input-group-text px-0 btn btn-border" id="phoneNumberForm">
+      <span class="px-1"></span>
+      <img [src]="flagSrc" width="20">
+      <span class="material-icons">
+        arrow_drop_down
+      </span>
+    </span>
+  </div>
+
+
+  <ng-container *ngIf="showCounter && maxlength">
+    <small *ngIf="phoneNumberForm.value" class="text-muted">
+      {{phoneNumberForm.value.length}}/{{maxlength}}
+    </small>
+  </ng-container>
+
+  <div class="invalid-feedback" *ngIf="showError && phoneNumberForm?.valid">
+      <mat-error *ngIf="phoneNumberForm.hasError('required')">
+        {{ "fieldRequired" |translate}}
+      </mat-error>
+      <mat-error *ngIf="phoneNumberForm.hasError('pattern')">
+        {{ patternHint || 'numbersOnly' |translate}}
+      </mat-error>
+      <mat-error *ngIf="phoneNumberForm.hasError('min')">
+        {{ patternHint |translate}}
+      </mat-error>
+      <mat-error *ngIf="phoneNumberForm.hasError('max')">
+        {{ patternHint |translate}}
+      </mat-error>
+      <mat-error *ngIf="phoneNumberForm.hasError('minlength')">
+        {{ patternHint || 'should be minimum 5 chars' |translate}}
+      </mat-error>
+      <mat-error *ngIf="phoneNumberForm.hasError('maxlength')">
+        {{ patternHint |translate}}
+      </mat-error>
+  </div>
+</div>
+
+ -->

@@ -1,0 +1,43 @@
+<h1 *ngIf="!isEdit" class="h3 mb-5">
+  {{ 'Add User' | translate }}
+</h1>
+<h1 *ngIf="isEdit" class="h3 mb-5">
+  {{ 'Edit User' | translate }}
+</h1>
+<form #userForm="ngForm" (ngSubmit)="submit(userForm)">
+  <input-form class="mb-4" label='Full Name' name="fullName"
+        [showError]="showError(userForm)" [required]="true"
+        [maxlength]="100" [(ngModel)]="user.FullName" #fullName="ngModel">
+  </input-form>
+  <input-form class="mb-4" label='Username' name="username"
+        [showError]="showError(userForm)" [required]="true"
+        [maxlength]="15" [(ngModel)]="user.Username" #username="ngModel">
+  </input-form>
+  <input-form class="mb-4" label='Email' name="email" type="email"
+  [showError]="showError(userForm)" [required]="true"
+  [maxlength]="70" [(ngModel)]="user.Email" #email="ngModel">
+</input-form>
+<input-intl-form class="mb-4" label='Phone Number' name="phone"
+      [showError]="showError(userForm)" [required]="true"
+
+      [(ngModel)]="user.Phone" #phone="ngModel">
+</input-intl-form>
+
+
+  <div class="p-2"></div>
+  <button class="btn btn-lg mx-auto d-block btn-primary text-white" [disabled]="isSubmitting" type="submit">
+    <span *ngIf="!isSubmitting">
+      <ng-container *ngIf="!isEdit">
+        {{ 'Add' | translate}}
+      </ng-container>
+      <ng-container *ngIf="isEdit">
+        {{ 'Save' | translate}}
+      </ng-container>
+
+    </span>
+    <strong *ngIf="isSubmitting">
+      <div class="spinner-border text-light" role="status"></div>
+    </strong>
+  </button>
+
+</form>

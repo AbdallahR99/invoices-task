@@ -1,0 +1,59 @@
+<h1 *ngIf="!isEdit" class="h3 mb-5">
+  {{ 'Add Invoice' | translate }}
+</h1>
+<h1 *ngIf="isEdit" class="h3 mb-5">
+  {{ 'Edit Invoice' | translate }}
+</h1>
+<form #invoiceForm="ngForm" (ngSubmit)="submit(invoiceForm)">
+  <input-form class="mb-4" label='Product' name="product"
+        [showError]="showError(invoiceForm)" [required]="true"
+        [maxlength]="255" [(ngModel)]="invoice.Product" #product="ngModel">
+  </input-form>
+  <input-form class="mb-4" label='Price' name="price" type="number"
+        [showError]="showError(invoiceForm)" [required]="true"
+       [(ngModel)]="invoice.Price" #price="ngModel">
+  </input-form>
+  <input-form class="mb-4" label='Quantity' name="quantity" type="number"
+    [showError]="showError(invoiceForm)" [required]="true"
+    [(ngModel)]="invoice.Quantity" #quantity="ngModel">
+  </input-form>
+  <h4 *ngIf="invoice.Price && invoice.Quantity">
+    <bdi>{{"Total" | translate}}</bdi>: {{ invoice.Price * invoice.Quantity }}
+  </h4>
+  <!-- <div class="mb-3">
+    <input type="checkbox" class="form-check-input" #enterIdManually="ngModel" ngModel name="enterIdManually" id="enterIdManually" [value]="true">
+    &nbsp;
+    <label class="form-check-label" for="enterIdManually">
+      {{ "Enter ID Manually" | translate }}
+    </label>
+  </div>
+  <input-form *ngIf="enterIdManually.value" class="mb-4" label='User ID' name="userID" type="number"
+        [showError]="showError(invoiceForm)" [required]="true"
+       [(ngModel)]="invoice.UserID" #userID="ngModel">
+  </input-form>
+  <select-form *ngIf="!enterIdManually.value" class="mb-4" label='Select User' name="userID"
+    [showError]="showError(invoiceForm)" [required]="true" [items]="users"
+    [isError]="isUsersError" [isLoading]="isUsersLoading"
+
+    [queryProp]="'FullName'" [optionValueProp]="'ID'" [optionLabelProp]="'FullName'"
+    [(ngModel)]="invoice.UserID" #userID="ngModel">
+</select-form> -->
+
+
+  <div class="p-2"></div>
+  <button class="btn btn-lg mx-auto d-block btn-primary text-white" [disabled]="isSubmitting" type="submit">
+    <span *ngIf="!isSubmitting">
+      <ng-container *ngIf="!isEdit">
+        {{ 'Add' | translate}}
+      </ng-container>
+      <ng-container *ngIf="isEdit">
+        {{ 'Save' | translate}}
+      </ng-container>
+
+    </span>
+    <strong *ngIf="isSubmitting">
+      <div class="spinner-border text-light" role="status"></div>
+    </strong>
+  </button>
+
+</form>

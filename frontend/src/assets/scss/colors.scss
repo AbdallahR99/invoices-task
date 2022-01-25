@@ -1,0 +1,19 @@
+$primary: #2fb6b6;
+$secondary: #E87287;
+$success: #198754;
+$danger: #dc3545;
+$warning: #ffc107;
+$info: #0dcaf0;
+$light: #F4F6FB;
+$dark: #212529;
+$white: #fff;
+$border: #dee2e6;
+$blue: #00a8e8;
+$transparent: transparent;
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+

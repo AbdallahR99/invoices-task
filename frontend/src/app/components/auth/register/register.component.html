@@ -1,0 +1,43 @@
+<div class="container shadow-sm bg-white rounded-3 p-3 animated fadeInUp mt-5">
+  <h1 class="h3 mb-5">
+    {{ 'Register' | translate }}
+  </h1>
+  <form #registerForm="ngForm" (ngSubmit)="submit(registerForm)">
+    <input-form class="mb-4" label='Full Name' name="fullName"
+          [showError]="showError(registerForm)" [required]="true"
+          [maxlength]="100" [(ngModel)]="user.FullName" #fullName="ngModel">
+    </input-form>
+    <input-form class="mb-4" label='Username' name="username"
+          [showError]="showError(registerForm)" [required]="true"
+          [maxlength]="15" [(ngModel)]="user.Username" #username="ngModel">
+    </input-form>
+    <input-form class="mb-4" label='Email' name="email" type="email"
+    [showError]="showError(registerForm)" [required]="true"
+    [maxlength]="70" [(ngModel)]="user.Email" #email="ngModel">
+  </input-form>
+  <input-intl-form class="mb-4" label='Phone Number' name="phone"
+        [showError]="showError(registerForm)" [required]="true"
+
+        [(ngModel)]="user.Phone" #phone="ngModel">
+  </input-intl-form>
+  <input-form class="mb-4" label='Password' name="password" type="password"
+        [showError]="showError(registerForm)" [required]="true"
+        [minlength]="8" [maxlength]="32" [(ngModel)]="user.Password" #password="ngModel">
+  </input-form>
+  <input-form class="mb-4" label='Confirm Password' name="confirmPassword" type="password"
+        [showError]="showError(registerForm)" [required]="true" [pattern]="password.value" patternHint="Password must match"
+        [minlength]="8" [maxlength]="32" [(ngModel)]="user.ConfirmPassword" #confirmPassword="ngModel">
+  </input-form>
+
+
+
+    <div class="p-2"></div>
+    <button class="btn btn-lg mx-auto d-block btn-primary text-white" [disabled]="isSubmitting" type="submit">
+      <span *ngIf="!isSubmitting">{{ 'Register' | translate}}</span>
+      <strong *ngIf="isSubmitting">
+        <div class="spinner-border text-light" role="status"></div>
+      </strong>
+    </button>
+
+  </form>
+</div>

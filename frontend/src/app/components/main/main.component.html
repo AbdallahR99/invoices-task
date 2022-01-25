@@ -1,0 +1,126 @@
+<div class="container animated fadeInUp">
+  <div class="w-100">
+    <form (ngSubmit)="searchBy()" class="p-3 bg-white">
+      <div class="form-group m-0 position-relative">
+        <span class="search-icon position-absolute">
+          <span class="material-icons">
+          search
+          </span> &nbsp;</span>
+        <input [(ngModel)]="pagination.SearchBy" name="search" type="search" (search)="searchBy()"
+          class="form-control search"  placeholder='{{"Search" | translate}}'>
+      </div>
+    </form>
+    <div class="position-relative">
+      <div *ngIf="isLoading" class="position-absolute p-5 h-100 w-100 bg-loading d-flex align-items-center justify-content-center">
+        <mat-spinner color="accent"></mat-spinner>
+      </div>
+      <table id="mytable" class="w-100" mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef> {{ "Full Name" | translate }} </th>
+          <td mat-cell *matCellDef="let element"> {{element.FullName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> {{ "Email" | translate }} </th>
+          <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> {{ "Phone Number" | translate }} </th>
+          <td mat-cell *matCellDef="let element" class="text-left"> <span dir="ltr">{{element.Phone}}</span> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="createdDate">
+          <th mat-header-cell *matHeaderCellDef> {{ "Created Date" | translate }} </th>
+          <td mat-cell *matCellDef="let element"> {{element.CreatedDate | date:'longDate':undefined:currentLang }} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th [class.d-none]="!isAdmin" mat-header-cell *matHeaderCellDef> {{ "Actions" | translate }} </th>
+          <td [class.d-none]="!isAdmin" mat-cell *matCellDef="let element">
+
+            <ng-container *ngIf="isAdmin">
+              <button mat-button class="mx-2" (click)="edit(element)"
+              class="text-warning">
+                <div class="d-flex align-items-center">
+                  <span>{{"Update" | translate}}</span>
+                  <div class="mx-1"></div>
+                  <span class="material-icons">
+                    edit
+                  </span>
+                </div>
+              </button>
+              <button (click)="delete(element)" mat-button class="mx-2" class="text-danger">
+                <div class="d-flex align-items-center">
+                  <span>{{"Delete" | translate}}</span>
+                  <div class="mx-1"></div>
+                  <span class="material-icons">
+                    delete
+                  </span>
+                </div>
+              </button>
+            </ng-container>
+
+
+
+            <!-- <button mat-icon-button (click)="edit(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="delete(element)">
+              <mat-icon>delete</mat-icon>
+            </button>   -->
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+
+    <div class="d-flex flex-wrap bg-white justify-content-between">
+
+        <!-- [pageSize]="pagination.pageSize"
+        [pageIndex]="pagination.pageNumber - 1" -->
+        <mat-paginator
+        showFirstLastButtons
+        [length]="totalCount || 0"
+        [pageSize]="pagination.PageSize"
+        [pageIndex]="pagination.PageNumber - 1"
+        [pageSizeOptions]="totalCount? [5, 10, 25, totalCount ?? 2]:[5, 10, 25]"
+        (page)="paginating($event)"
+        >
+      </mat-paginator>
+      <div class="d-flex">
+        <button mat-button [matMenuTriggerFor]="saveAsMenu" class="mx-2  text-success d-flex align-items-center" color="secondary">
+          <span>{{"Save As" | translate}}</span>&nbsp;<span class="material-icons">save</span>
+        </button>
+        <mat-menu #saveAsMenu="matMenu">
+          <button mat-menu-item (click)="exportAs('pdf', 'portrait')">.PDF</button>
+          <button mat-menu-item (click)="exportAs('xlsx')">.XLSX</button>
+        </mat-menu>
+        <button *ngIf="isAdmin" mat-button (click)="add()" class="mx-2  text-primary d-flex align-items-center" color="secondary">
+          <span>{{"Add" | translate}}</span>&nbsp;<span class="material-icons">add</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                  >
+    </mat-paginator> -->
+  </div>
+</div>
+

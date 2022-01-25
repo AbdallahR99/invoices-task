@@ -1,0 +1,29 @@
+<div class="container shadow-sm bg-white rounded-3 p-3 animated fadeInUp mt-5">
+  <h1 class="h3 mb-5">
+    {{ 'Login' | translate }}
+  </h1>
+  <form #loginForm="ngForm" (ngSubmit)="submit(loginForm)">
+    <input-form class="mb-4" label='Username' name="username"
+          [showError]="showError(loginForm)" [required]="true"
+          [maxlength]="32" [minlength]="3" patternHint="{{'It must be at least' | translate}} 4 {{'Characters' | translate | lowercase}}"
+          [(ngModel)]="user.Username" #username="ngModel">
+    </input-form>
+    <input-form class="mb-4" label='Password' name="password" type="password"
+          [showError]="showError(loginForm)" [required]="true"
+          [maxlength]="32" [(ngModel)]="user.Password" #password="ngModel">
+    </input-form>
+    <select-form class="mb-4" label='User Type' name="userType"
+    [showError]="showError(loginForm)" [required]="true" [items]="userTypes"
+    [queryProp]="'typeName'" [optionValueProp]="'value'" [optionLabelProp]="'typeName'"
+    [(ngModel)]="user.IsAdmin" #userType="ngModel">
+
+    </select-form>
+    <div class="p-2"></div>
+    <button class="btn btn-lg mx-auto d-block btn-primary text-white" [disabled]="isSubmitting" type="submit">
+      <span *ngIf="!isSubmitting">{{ 'Login' | translate}}</span>
+      <strong *ngIf="isSubmitting">
+        <div class="spinner-border text-light" role="status"></div>
+      </strong>
+    </button>
+  </form>
+</div>

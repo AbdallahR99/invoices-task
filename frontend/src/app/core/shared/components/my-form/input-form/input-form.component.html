@@ -1,0 +1,48 @@
+<div class="form-label-group text-start">
+  <label *ngIf="label" for="{{name}}"><strong>{{label | translate}}</strong></label>
+  <!-- [ngClass]="(showError)
+      ? !control.valid ? 'is-invalid' : 'is-valid' : null" -->
+  <input
+      [ngClass]="(showError)
+      ? !control.valid ? 'is-invalid' : '' : ''"
+      [type]="type"
+      (input)="onChange(isNumber? $any($event.target).valueAsNumber : $any($event.target).value)"
+      (blur)="onTouched()"
+      #input
+      id="{{name}}"
+      name="{{name}}"
+      [formControl]="control"
+      [maxlength]="maxlength"
+      [disabled]="disabled"
+      [max]="max"
+      [min]="min"
+
+      [numberFormat]="isNumber"
+      class="form-control text-start"
+      placeholder="{{placeholder || '' | translate}}"
+  >
+  <!-- <div *ngIf="controlDir?.control?.status === 'PENDING'" class="fa fa-spinner fa-spin loader"></div> -->
+  <!-- <code>
+    {{control.hasError('required') }}
+  </code> -->
+  <ng-container *ngIf="showCounter && maxlength">
+    <span *ngIf="control.value" class="text-muted">
+      {{control.value.length}}/{{maxlength}}
+    </span>
+  </ng-container>
+
+  <div class="invalid-feedback" *ngIf="showError && !controlDir?.control?.valid">
+      <mat-error *ngIf="control.hasError('required')">
+        {{ "fieldRequired" |translate}}
+      </mat-error>
+      <mat-error *ngIf="control.hasError('pattern') || control.hasError('min') ||
+       control.hasError('max') || control.hasError('minlength') || control.hasError('maxlength')">
+        {{ patternHint |translate}}
+      </mat-error>
+
+  </div>
+
+  <!-- <div class="invalid-feedback d-block" *ngIf="(!controlDir?.control?.valid && controlDir?.control?.dirty)" >
+      <span *ngIf="control.errors?.emailExists">Email address is in use</span>
+  </div> -->
+</div>

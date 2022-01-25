@@ -1,0 +1,76 @@
+
+
+<!-- (valueChange)="onChange($event)" -->
+<label *ngIf="label" [for]="name"><strong>{{label | translate}}</strong></label>
+<mat-form-field class="w-100" appearance="outline">
+  <span class="select-icon position-absolute">
+
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+   </span>
+
+  <mat-select #input
+    [formControl]="control"
+    (selectionChange)="selectionChanged($event)"
+    [required]="required"
+    [disabled]="disabled"
+    class="dir"
+    placeholder="{{placeholder || '' | translate}}">
+
+
+
+    <ng-container *ngIf="items">
+      <div class="d-flex pt-2 px-1 position-sticky search">
+        <input type="text" [(ngModel)]="query" [ngModelOptions]="{standalone: true}"
+          class="form-control mx-2"
+        placeholder="{{'Search' | translate}}">
+      </div>
+
+      <mat-option class="dir" *ngFor="let item of items | filter:query:queryProp"
+      [value]="optionValueProp? item[optionValueProp] : item">
+        <img *ngIf="showImg" [src]="imgPath + item[imgName]" width="40" alt="">
+        <ng-container *ngIf="optionLabelPropEn">
+          {{ isEn? item[optionLabelPropEn] : item[optionLabelProp] }}
+
+        </ng-container>
+        <ng-container *ngIf="!optionLabelPropEn">
+          {{ optionLabelProp ? item[optionLabelProp] : item | translate }}
+
+        </ng-container>
+
+
+      </mat-option>
+
+      <ng-container *ngIf="(items | filter:query:queryProp)?.length === 0">
+        <div class="text-center" >
+
+          {{'No result found'|translate}}
+        </div>
+        <mat-option class="d-none">
+
+        </mat-option>
+      </ng-container>
+
+
+    </ng-container>
+    <ng-container *ngIf="!items">
+      <div *ngIf="isLoading" class="spinner-border my-5 mx-auto d-block text-secondary" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+      </div>
+      <h3 class="text-center text-danger" *ngIf="isError">
+        {{'An Error Occurred, Please Try Again' | translate}}
+      </h3>
+      <div *ngIf="!isError && !isLoading">
+        <strong >{{ 'No Items' | translate }}</strong>
+      </div>
+      <mat-option class="d-none">
+
+      </mat-option>
+    </ng-container>
+
+  </mat-select>
+  <mat-error class="mt-n4" *ngIf="showError && controlDir.control!.hasError('required')">
+    {{ 'fieldRequired' | translate }}
+  </mat-error>
+
+</mat-form-field>
+

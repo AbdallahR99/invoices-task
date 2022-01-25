@@ -1,0 +1,66 @@
+@import "colors.scss";
+@import "bootstrap.scss";
+@import "fixes.scss";
+@import "font.scss";
+@import "animation.scss";
+@import "material.scss";
+@import "snackbar.scss";
+@import "scroll.scss";
+
+
+[dir=rtl] {
+  .dir {
+    direction: rtl;
+  }
+
+  .text-start {
+   text-align: right !important;
+  }
+
+  .input-group > .input-group-append > .input-group-text {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+  .input-group:not(.has-validation) > .form-control:not(:last-child) {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .input-group > .input-group-prepend > .input-group-text {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+  .input-group:not(.has-validation) > .form-control:not(:first-child) {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+[dir=ltr] {
+  .dir {
+    direction: ltr;
+  }
+}
+
+[lang=ar] {
+
+}
+
+[lang=en] {
+
+}
+
+.dialogn-width {
+  min-width: 320px;
+  width: 400px;
+}

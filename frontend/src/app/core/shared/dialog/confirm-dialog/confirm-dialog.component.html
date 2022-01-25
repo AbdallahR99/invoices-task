@@ -1,0 +1,34 @@
+<h2 mat-dialog-title class="text-start text-danger dir">
+  <ng-container *ngIf="data?.header">
+    <bdi>{{ data.header || '' | translate }}</bdi>
+  </ng-container>
+  <ng-container *ngIf="!data?.header">
+    <bdi>{{'Are you sure?' | translate}}</bdi>
+  </ng-container>
+</h2>
+<mat-dialog-content class="text-start dir">
+  <ng-container *ngIf="data?.content">
+    <bdi>{{ data.content || '' | translate }}</bdi>
+  </ng-container>
+  <ng-container *ngIf="!data?.content">
+    <bdi>{{'Are you sure?' | translate}}</bdi>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions class="rdir">
+  <button mat-button [mat-dialog-close]="false">
+    <ng-container *ngIf="data?.cancel">
+      <bdi>{{ data.cancel || '' | translate }}</bdi>
+    </ng-container>
+    <ng-container *ngIf="!data?.cancel" cdkFocusInitial>
+      <bdi>{{'Cancel' | translate}}</bdi>
+    </ng-container>
+  </button>
+  <button mat-button [mat-dialog-close]="true" class="text-danger">
+    <ng-container *ngIf="data?.confirm">
+      <bdi>{{ data.confirm }}</bdi>
+    </ng-container>
+    <ng-container *ngIf="!data?.confirm" cdkFocusInitial>
+      <bdi>{{'Confirm' | translate}}</bdi>
+    </ng-container>
+  </button>
+</mat-dialog-actions>

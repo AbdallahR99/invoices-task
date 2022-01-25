@@ -1,0 +1,65 @@
+<header #navbar class="p-2 p-md-4 text-md-center shadow-sm bg-white">
+  <div class="container d-none d-md-flex justify-content-between">
+    <ul class="list-unstyled nav gap-4 d-inline-flex">
+      <li>
+        <a [routerLink]="[routes.MAIN]" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }"
+        class="text-decoration-none"> {{ 'Main' | translate }} </a>
+      </li>
+      <li>
+        <a [routerLink]="[routes.INVOICES]" routerLinkActive="text-primary"
+        class="text-decoration-none"> {{ 'Invoices' | translate }} </a>
+      </li>
+      <li *ngIf="isAuthed && user">
+        <span class="d-flex align-items-center">
+          {{ user.FullName }}
+        </span>
+      </li>
+      <li *ngIf="isAuthed">
+        <a (click)="logOut()" routerLinkActive="text-primary"
+        class="text-decoration-none text-danger" role="button"> {{ 'Logout' | translate }} </a>
+      </li>
+      <li *ngIf="!isAuthed">
+        <a [routerLink]="[routes.LOGIN]" routerLinkActive="text-primary"
+        class="text-decoration-none"> {{ 'Login' | translate }} </a>
+      </li>
+      <li *ngIf="!isAuthed">
+        <a [routerLink]="[routes.REGISTER]" routerLinkActive="text-primary"
+        class="text-decoration-none"> {{ 'Register' | translate }} </a>
+      </li>
+    </ul>
+    <a role="button" (click)="toggleLanguage()">
+      {{ isEn? 'عربي' : 'English' }}
+    </a>
+  </div>
+
+  <span role="button" (click)="isCollapsed = !isCollapsed" class="material-icons text-{{isCollapsed? 'dark' : 'white'}} d-md-none nav-toggle">
+    {{isCollapsed ? 'menu' : 'close'}}
+  </span>
+  <div class="mob-nav" [class.open]="!isCollapsed">
+    <div class="p-3"></div>
+    <ul class="nav-list list-unstyled nav flex-column justify-content-center align-content-center text-center py-5 gap-5">
+      <li>
+        <a [routerLink]="[routes.MAIN]" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }"
+        class="text-decoration-none"> {{ 'Main' | translate}} </a>
+      </li>
+      <li>
+        <a [routerLink]="[routes.INVOICES]" routerLinkActive="text-primary"
+        class="text-decoration-none"> {{ 'Invoices' | translate}} </a>
+      </li>
+      <li *ngIf="!isAuthed">
+        <a [routerLink]="[routes.LOGIN]" routerLinkActive="text-primary"
+        class="text-decoration-none">{{ 'Login' | translate}}</a>
+      </li>
+      <li *ngIf="!isAuthed">
+        <a [routerLink]="[routes.REGISTER]" routerLinkActive="text-primary"
+        class="text-decoration-none">{{ 'Register' | translate}}</a>
+      </li>
+      <li>
+        <a role="button" (click)="toggleLanguage()">
+          {{ isEn? 'عربي' : 'English' }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+<mat-progress-bar *ngIf="$isLoading | async" mode="indeterminate"></mat-progress-bar>

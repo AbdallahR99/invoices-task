@@ -1,0 +1,33 @@
+<h4 mat-dialog-title class="text-start dir pb-2 border-bottom">
+  {{'Select Country'| translate}}
+</h4>
+<div mat-dialog-content class="text-start dir">
+  <div class="form-group">
+    <input type="text" [(ngModel)]="countryQuery"
+      class="form-control" placeholder="{{'Search for a country' | translate}}">
+  </div>
+  <div class="countries">
+    <div class="loading" *ngIf="isLoading">
+      <mat-spinner class="m-auto"></mat-spinner>
+    </div>
+    <div *ngIf="countries" class="loaded">
+      <mat-selection-list [multiple]="false">
+
+        <mat-list-option [mat-dialog-close]="country" [selected]="country.code === currentCountry" *ngFor="let country of filteredCountries">
+          <div mat-list-icon>
+            <img [src]="countryFlag(country.code)" width="40" alt="">
+
+          </div>
+
+          <div class="mx-3" mat-line>{{ isEn? country.nameEn : country.nameAr }}</div>
+          <small class="text-muted mx-3" mat-line> {{country.dial_code }} </small>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <div *ngIf="isError" class="error">
+      <h4 class="text-center text-danger">
+        {{'An Error Occurred, Please Try Again' | translate}}
+      </h4>
+    </div>
+  </div>
+</div>
