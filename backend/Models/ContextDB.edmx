@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="itrootsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="db_a79052_rootdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="ID" />
@@ -29,7 +29,7 @@
           <Property Name="IsAdmin" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Invoices__UserID__300424B4">
+        <Association Name="FK__Invoices__UserID__286302EC">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -59,18 +59,19 @@
           <Parameter Name="IsAdd" Type="bit" Mode="In" />
         </Function>
         <Function Name="SelectUserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="itrootsDBModelStoreContainer">
+        <EntityContainer Name="db_a79052_rootdbModelStoreContainer">
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Invoices__UserID__300424B4" Association="Self.FK__Invoices__UserID__300424B4">
+          <AssociationSet Name="FK__Invoices__UserID__286302EC" Association="Self.FK__Invoices__UserID__286302EC">
             <End Role="Users" EntitySet="Users" />
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="itrootsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="db_a79052_rootdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="ID" />
@@ -81,7 +82,7 @@
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Invoices__UserID__300424B4" FromRole="Invoices" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Invoices__UserID__286302EC" FromRole="Invoices" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -95,9 +96,9 @@
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsAdmin" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__UserID__300424B4" FromRole="Users" ToRole="Invoices" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__UserID__286302EC" FromRole="Users" ToRole="Invoices" />
         </EntityType>
-        <Association Name="FK__Invoices__UserID__300424B4">
+        <Association Name="FK__Invoices__UserID__286302EC">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,17 +110,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="itrootsDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db_a79052_rootdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Invoices" EntityType="Self.Invoices" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__Invoices__UserID__300424B4" Association="Self.FK__Invoices__UserID__300424B4">
+          <AssociationSet Name="FK__Invoices__UserID__286302EC" Association="Self.FK__Invoices__UserID__286302EC">
             <End Role="Users" EntitySet="Users" />
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
           <FunctionImport Name="DeleteUser">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="LoginUser" ReturnType="Collection(itrootsDBModel.LoginUser_Result)">
+          <FunctionImport Name="LoginUser" ReturnType="Collection(db_a79052_rootdbModel.LoginUser_Result)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Pasword" Mode="In" Type="String" />
           </FunctionImport>
@@ -133,8 +134,7 @@
             <Parameter Name="IsAdmin" Mode="In" Type="Boolean" />
             <Parameter Name="IsAdd" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="SelectUserList" ReturnType="Collection(itrootsDBModel.SelectUserList_Result)">
-          </FunctionImport>
+          <FunctionImport Name="SelectUserList" ReturnType="Collection(db_a79052_rootdbModel.SelectUserList_Result)" />
         </EntityContainer>
         <ComplexType Name="LoginUser_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -161,9 +161,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="itrootsDBModelStoreContainer" CdmEntityContainer="itrootsDBEntities">
+        <EntityContainerMapping StorageEntityContainer="db_a79052_rootdbModelStoreContainer" CdmEntityContainer="db_a79052_rootdbEntities">
           <EntitySetMapping Name="Invoices">
-            <EntityTypeMapping TypeName="itrootsDBModel.Invoices">
+            <EntityTypeMapping TypeName="db_a79052_rootdbModel.Invoices">
               <MappingFragment StoreEntitySet="Invoices">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
@@ -175,7 +175,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="itrootsDBModel.Users">
+            <EntityTypeMapping TypeName="db_a79052_rootdbModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -188,10 +188,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="itrootsDBModel.Store.DeleteUser" />
-          <FunctionImportMapping FunctionImportName="LoginUser" FunctionName="itrootsDBModel.Store.LoginUser">
+          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="db_a79052_rootdbModel.Store.DeleteUser" />
+          <FunctionImportMapping FunctionImportName="LoginUser" FunctionName="db_a79052_rootdbModel.Store.LoginUser">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="itrootsDBModel.LoginUser_Result">
+              <ComplexTypeMapping TypeName="db_a79052_rootdbModel.LoginUser_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -203,10 +203,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SaveUser" FunctionName="itrootsDBModel.Store.SaveUser" />
-          <FunctionImportMapping FunctionImportName="SelectUserList" FunctionName="itrootsDBModel.Store.SelectUserList">
+          <FunctionImportMapping FunctionImportName="SaveUser" FunctionName="db_a79052_rootdbModel.Store.SaveUser" />
+          <FunctionImportMapping FunctionImportName="SelectUserList" FunctionName="db_a79052_rootdbModel.Store.SelectUserList">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="itrootsDBModel.SelectUserList_Result">
+              <ComplexTypeMapping TypeName="db_a79052_rootdbModel.SelectUserList_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Username" ColumnName="Username" />

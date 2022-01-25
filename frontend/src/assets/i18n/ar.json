@@ -48,6 +48,9 @@
   "Are you sure?": "هل أنت متأكد؟",
   "Confirm": "تأكيد",
   "you will delete": "سوف تقوم بحذف",
+  "Error": "خطأ",
+  "Success": "نجاح",
+  "Done": "تم",
 
   "PAGINATOR.ITEMS_PER_PAGE": "عدد عناصر الصفحة",
   "PAGINATOR.OF": "من",

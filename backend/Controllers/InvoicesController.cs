@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace ITRootsAPI.Controllers
 {
@@ -14,7 +15,7 @@ namespace ITRootsAPI.Controllers
     [RoutePrefix("api/Invoicess")]
     public class InvoicesController : ApiController
     {
-        private readonly itrootsDBEntities _context = new itrootsDBEntities();
+        private readonly db_a79052_rootdbEntities _context = new db_a79052_rootdbEntities();
 
         public IHttpActionResult Get()
         {
@@ -109,7 +110,7 @@ namespace ITRootsAPI.Controllers
                 var invoiceDB = _context.Invoices.Find(invoiceDto.ID);
                 if (invoiceDB == null) return NotFound();
                 invoiceDB = mapper.Map<InvoiceDto, Invoices>(invoiceDto);
-
+                _context.Entry(invoiceDB).State = EntityState.Modified;
                 if (_context.SaveChanges() > 0)
                     return Ok();
 

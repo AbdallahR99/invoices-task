@@ -21,6 +21,6 @@ namespace ITRootsAPI.Models
         public Nullable<int> UserID { get; set; }
         public System.DateTime CreatedDate { get; set; }
     
-        public  Users Users { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

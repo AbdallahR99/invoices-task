@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
     this.isSubmitting = true;
     this.facadeService.authService.register(this.user).toPromise().then(user => {
       this.isSubmitting = false;
+
       localStorage.setItem(LocalStorage.USER, JSON.stringify(user));
       this.router.navigate([Routes.MAIN]);
 

@@ -15,10 +15,10 @@ namespace ITRootsAPI.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class itrootsDBEntities : DbContext
+    public partial class db_a79052_rootdbEntities : DbContext
     {
-        public itrootsDBEntities()
-            : base("name=itrootsDBEntities")
+        public db_a79052_rootdbEntities()
+            : base("name=db_a79052_rootdbEntities")
         {
         }
     

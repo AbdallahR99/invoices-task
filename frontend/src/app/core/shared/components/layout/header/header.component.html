@@ -9,10 +9,13 @@
         <a [routerLink]="[routes.INVOICES]" routerLinkActive="text-primary"
         class="text-decoration-none"> {{ 'Invoices' | translate }} </a>
       </li>
-      <li *ngIf="isAuthed && user">
+      <li class="d-flex align-items-center" *ngIf="isAuthed && user">
         <span class="d-flex align-items-center">
           {{ user.FullName }}
         </span>
+        &nbsp;
+        <span *ngIf="user.IsAdmin" class="badge rounded-pill bg-primary small">Admin</span>
+
       </li>
       <li *ngIf="isAuthed">
         <a (click)="logOut()" routerLinkActive="text-primary"
